@@ -24,6 +24,7 @@
 #include "gpio.h"
 #include "cli.h"
 #include "cli_defs.h"
+#include "log.h"
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
@@ -60,7 +61,7 @@ int main(void)
 	cli.cmd_cnt = sizeof(cmd_tbl)/sizeof(cmd_t);
 
 	cli_init(&cli);
-
+	print_log();
 	while (1)
 	{
 		HAL_UART_Receive_IT(&huart3, (uint8_t *)rx_buf, 1);
