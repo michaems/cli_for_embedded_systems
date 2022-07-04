@@ -1,9 +1,11 @@
 #ifndef _LOG_H_
 #define _LOG_H_
 
+#include "stdio.h"
 #include "stdbool.h"
 #include "stddef.h"
 #include "stdint.h"
+#include "stdarg.h"
 
 typedef enum msg_type_
 {
@@ -36,7 +38,7 @@ typedef enum msg_subtype_
     MSG_SUBTYPE_16 = 0x8000
 }msg_subtype_t;
 
-typedef void (*println_ptr_t)(const char *msg);
+typedef void (*println_ptr_t)(char *msg);
 
 typedef struct msg_obj_
 {
@@ -45,10 +47,10 @@ typedef struct msg_obj_
     println_ptr_t print_to_terminal;
 }msg_obj_st;
 
-void set_msg_type(msg_type_t msg_type, bool set);
-void set_msg_subtype(msg_subtype_t msg_subtype, bool set);
-void set_msg_print_fn(println_ptr_t print_fn);
+void log_set_msg_type(msg_type_t msg_type, bool set);
+void log_set_msg_subtype(msg_subtype_t msg_subtype, bool set);
+void log_set_msg_print_fn(println_ptr_t print_fn);
 
-void print_msg(char *msg, ...);
+void log_print_msg(msg_type_t msg_type, msg_subtype_t msg_subtype, char *msg, ...);
 
 #endif /*_LOG_H_*/

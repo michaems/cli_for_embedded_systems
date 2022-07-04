@@ -60,6 +60,13 @@ int main(void)
 
     cli_init(&cli);
 
+    /* log init */
+    log_set_msg_print_fn(user_uart_println);
+    log_set_msg_type(MSG_TYPE_INFO, true);
+    log_set_msg_subtype(MSG_SUBTYPE_1, true);
+
+    log_print_msg(MSG_TYPE_INFO, MSG_SUBTYPE_1, "INFO: msg_1 = %d, msg_2 = d", 1, 2);
+
     while (1)
     {
         HAL_UART_Receive_IT(&huart3, (uint8_t*) rx_buf, 1);
