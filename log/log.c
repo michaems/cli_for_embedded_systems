@@ -1,7 +1,12 @@
 #include "log.h"
 
-<<<<<<< HEAD
-static msg_obj_st msg_object = {.msg_type = MSG_TYPE_INFO, .msg_subtype = MSG_SUBTYPE_1, .print_to_terminal = NULL};
+
+static msg_obj_st msg_object =
+{
+        .msg_type = MSG_TYPE_INFO,
+        .msg_subtype = MSG_SUBTYPE_1,
+        .print_to_terminal = NULL
+};
 
 void set_msg_type(msg_type_t msg_type, bool set)
 {
@@ -48,9 +53,4 @@ void set_msg_print_fn(println_ptr_t print_fn)
 void print_msg(char *msg, args...)
 {
 
-=======
-void print_log(void)
-{
-	//just nothing
->>>>>>> db2a141eae1fd14069850d841b0fba8fc1560e13
 }
