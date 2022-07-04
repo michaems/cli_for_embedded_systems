@@ -25,8 +25,11 @@
 # Folders
 .Debug/
 .Release/
+<<<<<<< HEAD
 **/Debug
 **/Release
+=======
+>>>>>>> db2a141eae1fd14069850d841b0fba8fc1560e13
 
 # Shared objects (inc. Windows DLLs)
 *.dll

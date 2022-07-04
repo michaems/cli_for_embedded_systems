@@ -1,6 +1,7 @@
 #ifndef _LOG_H_
 #define _LOG_H_
 
+<<<<<<< HEAD
 #include "stdbool.h"
 #include "stddef.h"
 
@@ -49,5 +50,8 @@ void set_msg_subtype(msg_subtype_t msg_subtype, bool set);
 void set_msg_print_fn(println_ptr_t print_fn);
 
 void print_msg(char *msg, args...);
+=======
+void print_log(void);
+>>>>>>> db2a141eae1fd14069850d841b0fba8fc1560e13
 
 #endif /*_LOG_H_*/

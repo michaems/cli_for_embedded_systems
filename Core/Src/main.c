@@ -62,12 +62,23 @@ int main(void)
     cli_init(&cli);
     print_log();
 
+<<<<<<< HEAD
     while (1)
     {
         HAL_UART_Receive_IT(&huart3, (uint8_t*) rx_buf, 1);
         cli_process(&cli);
         rx_buf[0] = 0;
     }
+=======
+	cli_init(&cli);
+	print_log();
+	while (1)
+	{
+		HAL_UART_Receive_IT(&huart3, (uint8_t *)rx_buf, 1);
+		cli_process(&cli);
+		rx_buf[0] = 0;
+	}
+>>>>>>> db2a141eae1fd14069850d841b0fba8fc1560e13
 }
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
