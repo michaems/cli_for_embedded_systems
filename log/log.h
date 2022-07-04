@@ -1,9 +1,9 @@
 #ifndef _LOG_H_
 #define _LOG_H_
 
-<<<<<<< HEAD
 #include "stdbool.h"
 #include "stddef.h"
+#include "stdint.h"
 
 typedef enum msg_type_
 {
@@ -49,9 +49,6 @@ void set_msg_type(msg_type_t msg_type, bool set);
 void set_msg_subtype(msg_subtype_t msg_subtype, bool set);
 void set_msg_print_fn(println_ptr_t print_fn);
 
-void print_msg(char *msg, args...);
-=======
-void print_log(void);
->>>>>>> db2a141eae1fd14069850d841b0fba8fc1560e13
+void print_msg(char *msg, ...);
 
 #endif /*_LOG_H_*/

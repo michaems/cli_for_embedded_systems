@@ -26,7 +26,6 @@
 #include "cli_defs.h"
 #include "log.h"
 
-/* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 
 char rx_buf[1] = { 0 };
@@ -60,25 +59,13 @@ int main(void)
     cli.cmd_cnt = sizeof(cmd_tbl) / sizeof(cmd_t);
 
     cli_init(&cli);
-    print_log();
 
-<<<<<<< HEAD
     while (1)
     {
         HAL_UART_Receive_IT(&huart3, (uint8_t*) rx_buf, 1);
         cli_process(&cli);
         rx_buf[0] = 0;
     }
-=======
-	cli_init(&cli);
-	print_log();
-	while (1)
-	{
-		HAL_UART_Receive_IT(&huart3, (uint8_t *)rx_buf, 1);
-		cli_process(&cli);
-		rx_buf[0] = 0;
-	}
->>>>>>> db2a141eae1fd14069850d841b0fba8fc1560e13
 }
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
@@ -168,9 +155,6 @@ void SystemClock_Config(void)
     }
 }
 
-/* USER CODE BEGIN 4 */
-
-/* USER CODE END 4 */
 
 /**
  * @brief  This function is executed in case of error occurrence.
