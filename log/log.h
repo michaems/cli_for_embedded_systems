@@ -6,6 +6,7 @@
 #include "stddef.h"
 #include "stdint.h"
 #include "stdarg.h"
+#include "string.h"
 
 typedef enum msg_type_
 {
@@ -38,7 +39,7 @@ typedef enum msg_subtype_
     MSG_SUBTYPE_16 = 0x8000
 }msg_subtype_t;
 
-typedef void (*println_ptr_t)(char *msg);
+typedef void (*println_ptr_t)(const char *msg);
 
 typedef struct msg_obj_
 {

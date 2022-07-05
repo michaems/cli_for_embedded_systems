@@ -23,7 +23,7 @@ typedef enum
  * @brief Function type declarations.
  */
 typedef cli_status_t (*cmd_func_ptr_t)(int argc, char **argv);
-typedef void (*println_func_ptr_t)(char *string);
+typedef void (*println_func_ptr_t)(const char *string);
 
 /*!
  * @brief Command structure, consisting of a name and function pointer.
