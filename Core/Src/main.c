@@ -20,18 +20,16 @@
 #include "cli.h"
 #include "log.h"
 #include "cli_custom_commands.h"
+#include "freertos_tasks.h"
 #include "FreeRTOSConfig.h"
 #include "FreeRTOS.h"
 #include "task.h"
 
 void SystemClock_Config(void);
 
-char rx_buf[1] = { 0 };
-
 extern cli_t cli;
 
-void task_one(void *arg);
-void task_two(void *arg);
+char rx_buf[1] = {0};
 
 int main(void)
 {
@@ -44,23 +42,14 @@ int main(void)
     MX_GPIO_Init();
     MX_USART1_UART_Init();
     MX_USART3_UART_Init();
-
+    /* cli init */
     cli_init(&cli);
 
     /* log init */
     log_set_msg_print_fn(user_uart_println);
 
-    /* create task_one */
-    BaseType_t ret_val = xTaskCreate(task_one, "task_one", 256,
-                                     NULL, tskIDLE_PRIORITY + 2, NULL);
-    assert_param(ret_val);
-
-    ret_val = xTaskCreate(task_two, "task_two", 128,
-                          NULL, tskIDLE_PRIORITY + 1, NULL);
-    assert_param(ret_val);
-
-    (void)ret_val;
-
+    /* creating freeRTOS tasks and starting the scheduler */
+    os_create_required_tasks();
     vTaskStartScheduler();
 
     while (1)
@@ -75,26 +64,6 @@ int main(void)
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
     cli_put(&cli, rx_buf[0]);
-}
-
-void task_one(void *arg)
-{
-    for( ;; )
-    {
-        HAL_UART_Receive_IT(&huart3, (uint8_t*) rx_buf, 1);
-        cli_process(&cli);
-        rx_buf[0] = 0;
-        vTaskDelay(1 / portTICK_PERIOD_MS);
-    }
-}
-
-void task_two(void *arg)
-{
-    for( ;; )
-    {
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-        //cli.println(".");
-    }
 }
 
 /**

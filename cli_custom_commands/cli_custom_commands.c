@@ -28,7 +28,7 @@ void user_uart_println_1(const char *string)
 cli_status_t help_func(int argc, char **argv)
 {
     cli.println(CMD_LINEFEED);
-    cli.println("HELP function executed ...");
+    cli.println("HELP function executed ... SURE!");
     log_print_msg(MSG_TYPE_TRACE, MSG_SUBTYPE_1, "In the heart of HELP function");
     return CLI_OK;
 }
@@ -123,7 +123,7 @@ cli_status_t blink_func(int argc, char **argv)
         if (strcmp(argv[1], "-help") == 0)
         {
             cli.println(CMD_LINEFEED);
-            cli.println("BLINK help menu");
+            cli.println("BLINK help menu ... FOR SURE!");
             log_print_msg(MSG_TYPE_DEBUG, MSG_SUBTYPE_1, "BLINK executed with args. AGRC = %d",
                           argc);
         }
