@@ -11,6 +11,7 @@
 cli_status_t help_func(int argc, char **argv);
 cli_status_t blink_func(int argc, char **argv);
 void user_uart_println(const char *string);
+void user_uart_println_1(const char *string);
 
 cli_status_t set_msgtype(int argc, char **argv);
 cli_status_t unset_msgtype(int argc, char **argv);

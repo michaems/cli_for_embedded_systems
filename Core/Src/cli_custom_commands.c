@@ -20,6 +20,11 @@ void user_uart_println(const char *string)
     HAL_UART_Transmit(&huart3, (const uint8_t*) string, strlen(string), 1000);
 }
 
+void user_uart_println_1(const char *string)
+{
+    HAL_UART_Transmit(&huart1, (const uint8_t*) string, strlen(string), 1000);
+}
+
 cli_status_t help_func(int argc, char **argv)
 {
     cli.println(CMD_LINEFEED);
@@ -131,7 +136,7 @@ cli_status_t blink_func(int argc, char **argv)
     {
         cli.println(CMD_LINEFEED);
         cli.println("BLINK function executed");
-        log_print_msg(MSG_TYPE_DEBUG, MSG_SUBTYPE_1, "BLINK executed WITHOUT any arg ...");
+        log_print_msg(MSG_TYPE_DEBUG, MSG_SUBTYPE_1, "BLINK executed without any argument ...");
     }
     return CLI_OK;
 }

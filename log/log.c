@@ -19,6 +19,10 @@ static char *msg_type_str[] =
     "NONE"
 };
 
+static char formated_str[128] = {0};
+static char final_str_to_print[150] = {0};
+static char l_msg_type_str[10] = {0};
+
 static bool get_msgtype_as_str(msg_type_t msg_type, char *msgtype_str)
 {
     bool msgtype_found = false;
@@ -110,21 +114,19 @@ void log_print_msg(msg_type_t msg_type, msg_subtype_t msg_subtype, char *msg, ..
         return;
     }
 
-    char formated_str[128] = {0};
-    char final_str_to_print[150] = {0};
     va_list args;
 
     va_start(args, msg);
-
+    /*this function takes too much memory!, be noted if used in freeRTOS task*/
     vsprintf(formated_str, msg, args);
 
     va_end(args);
-    char msg_type_str[10] = {0};
-    bool msgtype_found = get_msgtype_as_str(msg_type, msg_type_str);
+
+    bool msgtype_found = get_msgtype_as_str(msg_type, l_msg_type_str);
     strcpy(final_str_to_print, "\r\n");
     if (msgtype_found)
     {
-        strcat(final_str_to_print, msg_type_str);
+        strcat(final_str_to_print, l_msg_type_str);
         strcat(final_str_to_print, ": ");
         strcat(final_str_to_print, formated_str);
     }
@@ -137,4 +139,8 @@ void log_print_msg(msg_type_t msg_type, msg_subtype_t msg_subtype, char *msg, ..
     {
         msg_object.print_to_terminal(final_str_to_print);
     }
+
+    memset(formated_str, 0, 128);
+    memset(final_str_to_print, 0, 128);
+    memset(l_msg_type_str, 0, 10);
 }
