@@ -33,8 +33,8 @@ void task_two(void *arg)
 {
     for( ;; )
     {
+        HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
         vTaskDelay(1000 / portTICK_PERIOD_MS);
-        //cli.println(".");
     }
 }
 

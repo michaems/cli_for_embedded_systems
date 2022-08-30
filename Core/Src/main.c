@@ -40,7 +40,6 @@ int main(void)
 
     /* Initialize all configured peripherals */
     MX_GPIO_Init();
-    MX_USART1_UART_Init();
     MX_USART3_UART_Init();
     /* cli init */
     cli_init(&cli);
@@ -55,9 +54,7 @@ int main(void)
     while (1)
     {
         /* the code will not reach here */
-        //HAL_UART_Receive_IT(&huart3, (uint8_t*) rx_buf, 1);
-        //cli_process(&cli);
-        //rx_buf[0] = 0;
+        /*see freeRTOS tasks*/
     }
 }
 
